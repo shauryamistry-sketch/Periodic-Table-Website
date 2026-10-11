@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin:0;
+    padding: 24px;
+    background: #5fa9f3;
+    color: #152235;
+    font-family: Ariel, Halvetica,  sans-serif;
+}
+h1 {
+    text-align: center;
+    font-size: clamp(25px, 3vw, 42 px);
+    letter-spacing: 2px;
+    margin: 10px 0 30px;
+}
+main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 20px;
+    align-items: start;
+}
+.table-area{
+    min-width: 0;
+    overflow-x: auto;
+    background: transparent;
+    padding: 8px;
+    border-radius: 0;
+    border: none;
+}
+.periodic-table {
+    display: grid;
+    grid-template-columns: repeat(18, minmax(55px, 1fr));
+    grid-template-rows: repeat(9, 72px);
+    gap: 4px;
+    min-width: 1100px;
+}
+.element {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 14px 2px 3px;
+    border: 1px solid rgba(20, 30, 40, 0.3);
+    border-radius: 0;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.15s, filter 0.15s;
+}
+.element:hover {
+    transform: scale(1.06);
+    filter: brightness(1.2);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+.atomic-number {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    right: 0;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+}
+.symbol {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+.element-name {
+    margin-top: 4px;
+    font-size: 8px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+.alkali-metal { background: #bd5353; }
+.alkaline-earth { background: #c18445; }
+.transition-metal { background: #b5a044; color: #17202a; }
+.post-transition { background: #579b80; }
+.metalloid { background: #488fa0; }
+.nonmetal { background: #547dc2; }
+.halogen { background: #8567b8; }
+.noble-gas { background: #b85d91; }
+.lanthanide { background: #477eaf; }
+.actinide { background: #9b687d; }
+.properties {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #dce2e8;
+    overflow-wrap: anywhere;
+}
+
+.selected-symbol {
+    font-size: 56px;
+    font-weight: bold;
+    margin: 20px, 0;
+}
+@media(max-width: 900px) {
+    main{
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+        <title>Periodic Table</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        <header>
+            <h1>Periodic Table</h1>
+        </header>
+        <main>
+            <section class="table-area">
+                <div class="periodic-table">
+                    {% for element in elements %}
+                        <a
+                            class="element {{ element.category }}"
+                            style="grid-column: {{ element.group }}; grid-row: {{ element.period }};"
+                            href="{{ url_for('home', element=element.number) }}"
+                            title="{{ element.name }}">
+
+                            <span class="atomic-number">{{ element.number }}</span>
+                            <span class="symbol">{{ element.symbol }}</span>
+                            <span class="element-name">{{ element.name }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="properties">
+                {% if selel %}
+                    <h2>{{selel.name}}</h2>
+                    <div class="selected-symbol">
+                        {{selel.symbol}}
+                    </div>
+                    <p>Atomic number: {{selel.number}}</p>
+                    <p>Category: {{selel.category | replace("-", " ")| title}}</p>
+                    <p>Period: {{selel.period}}</p>
+                    <p>Group: {{selel.group}}</p>
+                    <p>Atomic mass: {{ selel.mass }}</p>
+                    <p>Electronic Configuration: {{ selel.configuration }}</p>
+                {% else %}
+                    <h2>Element properties</h2>
+                    <p>Select element to show properties :P</p>
+                {% endif%}
+            </section>
+        </main>
+    </body>
+</html>
