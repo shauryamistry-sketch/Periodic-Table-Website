@@ -1,3 +1,4 @@
+
 #http://127.0.0.1:5000
 from flask import Flask, render_template, request
 from elements import get_ele
@@ -20,3 +21,4 @@ def home():
     return render_template("index.html", elements=all_ele, selel=selel, elea=elea, eleb=eleb, forms=forms, bondtype=bondtype)
 if __name__=="__main__":
     app.run(debug=True)
+
