@@ -137,15 +137,15 @@ elements = [
 ]
 
 eleprop = {
-    "H": (1.008, "1s1"), "He": (4.0026, "1s2"),
+    "H": (1.008, "1s1", [1]), "He": (4.0026, "1s2", []),
     "Li": (6.94, "[He] 2s1"), "Be": (9.0122, "[He] 2s2"),
-    "B": (10.81, "[He] 2s2 2p1"), "C": (12.011, "[He] 2s2 2p2"),
-    "N": (14.007, "[He] 2s2 2p3"), "O": (15.999, "[He] 2s2 2p4"),
-    "F": (18.998, "[He] 2s2 2p5"), "Ne": (20.180, "[He] 2s2 2p6"),
+    "B": (10.81, "[He] 2s2 2p1", [3]), "C": (12.011, "[He] 2s2 2p2", [2, 4]),
+    "N": (14.007, "[He] 2s2 2p3", [3,5]), "O": (15.999, "[He] 2s2 2p4", [2]),
+    "F": (18.998, "[He] 2s2 2p5", [1]), "Ne": (20.180, "[He] 2s2 2p6", []),
     "Na": (22.990, "[Ne] 3s1"), "Mg": (24.305, "[Ne] 3s2"),
-    "Al": (26.982, "[Ne] 3s2 3p1"), "Si": (28.085, "[Ne] 3s2 3p2"),
-    "P": (30.974, "[Ne] 3s2 3p3"), "S": (32.06, "[Ne] 3s2 3p4"),
-    "Cl": (35.45, "[Ne] 3s2 3p5"), "Ar": (39.948, "[Ne] 3s2 3p6"),
+    "Al": (26.982, "[Ne] 3s2 3p1"), "Si": (28.085, "[Ne] 3s2 3p2", [4]),
+    "P": (30.974, "[Ne] 3s2 3p3", [3,5]), "S": (32.06, "[Ne] 3s2 3p4", [2,4,6]),
+    "Cl": (35.45, "[Ne] 3s2 3p5", [1, 3, 5, 7]), "Ar": (39.948, "[Ne] 3s2 3p6", []),
     "K": (39.098, "[Ar] 4s1"), "Ca": (40.078, "[Ar] 4s2"),
     "Sc": (44.956, "[Ar] 3d1 4s2"), "Ti": (47.867, "[Ar] 3d2 4s2"),
     "V": (50.942, "[Ar] 3d3 4s2"), "Cr": (51.996, "[Ar] 3d5 4s1"),
@@ -155,9 +155,9 @@ eleprop = {
     "Ga": (69.723, "[Ar] 3d10 4s2 4p1"),
     "Ge": (72.630, "[Ar] 3d10 4s2 4p2"),
     "As": (74.922, "[Ar] 3d10 4s2 4p3"),
-    "Se": (78.971, "[Ar] 3d10 4s2 4p4"),
-    "Br": (79.904, "[Ar] 3d10 4s2 4p5"),
-    "Kr": (83.798, "[Ar] 3d10 4s2 4p6"),
+    "Se": (78.971, "[Ar] 3d10 4s2 4p4", [2, 4, 6]),
+    "Br": (79.904, "[Ar] 3d10 4s2 4p5", [1,3,5,7]),
+    "Kr": (83.798, "[Ar] 3d10 4s2 4p6", []),
     "Rb": (85.468, "[Kr] 5s1"), "Sr": (87.62, "[Kr] 5s2"),
     "Y": (88.906, "[Kr] 4d1 5s2"), "Zr": (91.224, "[Kr] 4d2 5s2"),
     "Nb": (92.906, "[Kr] 4d4 5s1"), "Mo": (95.95, "[Kr] 4d5 5s1"),
@@ -168,8 +168,8 @@ eleprop = {
     "Sn": (118.710, "[Kr] 4d10 5s2 5p2"),
     "Sb": (121.760, "[Kr] 4d10 5s2 5p3"),
     "Te": (127.60, "[Kr] 4d10 5s2 5p4"),
-    "I": (126.904, "[Kr] 4d10 5s2 5p5"),
-    "Xe": (131.293, "[Kr] 4d10 5s2 5p6"),
+    "I": (126.904, "[Kr] 4d10 5s2 5p5", [1,3,5,7]),
+    "Xe": (131.293, "[Kr] 4d10 5s2 5p6", []),
     "Cs": (132.905, "[Xe] 6s1"), "Ba": (137.327, "[Xe] 6s2"),
     "La": (138.905, "[Xe] 5d1 6s2"),
     "Ce": (140.116, "[Xe] 4f1 5d1 6s2"),
@@ -195,7 +195,7 @@ eleprop = {
     "Bi": (208.980, "[Xe] 4f14 5d10 6s2 6p3"),
     "Po": (209, "[Xe] 4f14 5d10 6s2 6p4"),
     "At": (210, "[Xe] 4f14 5d10 6s2 6p5"),
-    "Rn": (222, "[Xe] 4f14 5d10 6s2 6p6"),
+    "Rn": (222, "[Xe] 4f14 5d10 6s2 6p6", []),
     "Fr": (223, "[Rn] 7s1"), "Ra": (226, "[Rn] 7s2"),
     "Ac": (227, "[Rn] 6d1 7s2"), "Th": (232.038, "[Rn] 6d2 7s2"),
     "Pa": (231.036, "[Rn] 5f2 6d1 7s2"),
@@ -222,11 +222,11 @@ eleprop = {
     "Ts": (294, "[Rn] 5f14 6d10 7s2 7p5"),
     "Og": (294, "[Rn] 5f14 6d10 7s2 7p6"),
 }
-
+oxi_states = {"H": [-1,1], "Li": [1], "Be": [2], "B": [3], "C": [-4, 2, 4], "N": [-3,1, 2, 3, 4, 5], "O": [-2, -1], "F": [-1], "Na": [1], "Mg": [2], "Al": [3], "Si": [-4,2,4], "P": [-3,3,5], "S":[-2,2,4,6], "Cl": [-1, 1, 3, 5, 7],}
 def expand_configuration(configuration):
     cores = {
         "[He]": "1s2",
-        "[Ne]": "1s2 2s2 2s6",
+        "[Ne]": "1s2 2s2 2p6",
         "[Ar]": "1s2 2s2 2p6 3s2 3p6",
         "[Kr]": "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6",
         "[Xe]": "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6",
@@ -245,6 +245,8 @@ def expand_configuration(configuration):
 def get_ele():
     result=[]
     for number, symbol, name, category, period, group in elements:
-        mass, configuration = eleprop[symbol]
-        result.append({"number": number, "symbol": symbol, "name": name, "category": category, "period": period, "group": group, "mass": mass, "configuration": expand_configuration(configuration)})
+        properties = eleprop[symbol]
+        mass, configuration = properties[:2]
+        valencies = properties[2] if len(properties) > 2 else []
+        result.append({"number": number, "symbol": symbol, "name": name, "category": category, "period": period, "group": group, "mass": mass, "configuration": expand_configuration(configuration), "valencies": valencies, "oxidation_states": list(oxi_states.get(symbol, []))})
     return result

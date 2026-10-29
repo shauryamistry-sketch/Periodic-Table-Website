@@ -44,6 +44,45 @@
                     <p>Select element to show properties :P</p>
                 {% endif%}
             </section>
+            <section class="compound-predictor">
+                <h2>Compound Predictor </h2>
+                <p>Select two elements to form ionic compounds</p>
+                <form action="{{ url_for('home') }}" method="get">
+                    <label for="elea">First element:</label>
+                    <select name="elea" id="elea" required>
+                        <option value="">
+                            select element
+                        </option>
+                        {% for element in elements %}
+                        <option value="{{ element.number }}" {% if elea and elea.number== element.number%}selected{% endif %}>
+                        {{ element.name }} ({{ element.symbol }})</option>
+                        {% endfor %}
+                    </select>
+                    <label for="eleb">second element</label>
+                    <select name="eleb" id="eleb" required>
+                        <option value="">select element</option>
+                        {% for element in elements %}
+                        <option value="{{ element.number }}" {%if eleb and eleb.number == element.number%}selected{% endif %}>{{ element.name }} ({{ element.symbol }})</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Predict Formula</button>
+                </form>
+                {% if elea and eleb %}
+                    <h3>{{ elea.symbol }} + {{ eleb.symbol }}</h3>
+                    <p>Bond classification: {{ bondtpye | title }}</p>
+                    {% if forms %}
+                        <p>Possible formula</p>
+                        <ul>
+                            {% for form in forms %}
+                                <li>{{ form }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p class="note">These are rule generated compounds, not confirmed. Some may exist and some may not.</p>
+                    {% else %}
+                    <p>No formulas were generated</p>
+                    {% endif %}
+                {% endif %}
+            </section>
         </main>
     </body>
 </html>
