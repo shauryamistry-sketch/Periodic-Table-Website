@@ -151,7 +151,7 @@ def get_oxidation_states(element, include_extended=False):
     if main_states is None:
         main_states=element.get("oxidation_states", [])
     extended_states = (element.get("extended_oxidation_states", []) if include_extended else [])
-    all_states = list(main_states) - list(extended_states)
+    all_states = list(main_states) + list(extended_states)
     return list(dict.fromkeys(state for state in all_states if type(state) is int and state!=0))
 def pred_oxi_form(elea, eleb):
     states_a = get_oxidation_states(elea)
