@@ -17,7 +17,7 @@
                         <a
                             class="element {{ element.category }}"
                             style="grid-column: {{ element.group }}; grid-row: {{ element.period }};"
-                            href="{{ url_for('home', element=element.number) }}"
+                            href="#element-properties-{{ element.number }}"
                             title="{{ element.name }}">
 
                             <span class="atomic-number">{{ element.number }}</span>
@@ -28,21 +28,22 @@
                 </div>
             </section>
             <section class="properties">
-                {% if selel %}
-                    <h2>{{selel.name}}</h2>
-                    <div class="selected-symbol">
-                        {{selel.symbol}}
+                    <div class="default-properties">
+                        <h2>Element properties</h2>
+                        <p> select element to show properties</p>
                     </div>
-                    <p>Atomic number: {{selel.number}}</p>
-                    <p>Category: {{selel.category | replace("-", " ")| title}}</p>
-                    <p>Period: {{selel.period}}</p>
-                    <p>Group: {{selel.group}}</p>
-                    <p>Atomic mass: {{ selel.mass }}</p>
-                    <p>Electronic Configuration: {{ selel.configuration }}</p>
-                {% else %}
-                    <h2>Element properties</h2>
-                    <p>Select element to show properties :P</p>
-                {% endif%}
+                    {% for element in elements %}
+                        <div class="element-properties" id="element-properties-{{ element.number }}">
+                            <h2>{{ element.name }}</h2>
+                            <div class="selected-symbol">{{ element.symbol }}</div>
+                        <p>Atomic number: {{ element.number }}</p>
+                        <p>Category: {{ element.category | replace("-", " ")| title }}</p>
+                        <p>Period: {{ element.period }}</p>
+                        <p>Group: {{ element.group }}</p>
+                        <p>Atomic mass: {{ element.mass }}</p>
+                        <p>Electronic configuration: {{ element.configuration }}</p>
+                        </div>
+                    {% endfor %}
             </section>
             <section class="compound-predictor">
                 <h2>Compound Predictor </h2>

@@ -1,3 +1,5 @@
+import json
+from pathlib import Path
 elements = [
     # Period 1
     (1, "H", "Hydrogen", "nonmetal", 1, 1),
@@ -222,7 +224,8 @@ eleprop = {
     "Ts": (294, "[Rn] 5f14 6d10 7s2 7p5"),
     "Og": (294, "[Rn] 5f14 6d10 7s2 7p6"),
 }
-oxi_states = {"H": [-1,1], "Li": [1], "Be": [2], "B": [3], "C": [-4, 2, 4], "N": [-3,1, 2, 3, 4, 5], "O": [-2, -1], "F": [-1], "Na": [1], "Mg": [2], "Al": [3], "Si": [-4,2,4], "P": [-3,3,5], "S":[-2,2,4,6], "Cl": [-1, 1, 3, 5, 7],}
+with Path(__file__).with_name(f"oxidation_states.json").open("r", encoding="utf-8") as file:
+    oxidation_state_data=json.load(file)
 def expand_configuration(configuration):
     cores = {
         "[He]": "1s2",
@@ -248,5 +251,8 @@ def get_ele():
         properties = eleprop[symbol]
         mass, configuration = properties[:2]
         valencies = properties[2] if len(properties) > 2 else []
-        result.append({"number": number, "symbol": symbol, "name": name, "category": category, "period": period, "group": group, "mass": mass, "configuration": expand_configuration(configuration), "valencies": valencies, "oxidation_states": list(oxi_states.get(symbol, []))})
+        state_data = oxidation_state_data.get(symbol, [])
+        main_states = list(state_data.get("main", []))
+        extended_states = list(state_data.get("extended", []))
+        result.append({"number": number, "symbol": symbol, "name": name, "category": category, "period": period, "group": group, "mass": mass, "configuration": expand_configuration(configuration), "valencies": valencies, "oxidation_states": main_states,"main_oxidation_states": main_states ,"extended_oxidation_states": extended_states})
     return result
